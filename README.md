@@ -1,6 +1,6 @@
 # 📈 SimTradeLab
 
-English | [中文](README.zh-CN.md)
+English | [中文](README.zh-CN.md) | [Deutsch](README.de.md)
 
 **Lightweight Quantitative Backtesting Framework — Local PTrade API Simulation**
 
@@ -77,9 +77,37 @@ from simtradelab.backtest.runner import BacktestRunner
 from simtradelab.backtest.config import BacktestConfig
 
 config = BacktestConfig(
-    strategy_name='my_strategy',
-    start_date='2024-01-01',
-    end_date='2024-12-31',
+    # --- Required ---
+    strategy_name='my_strategy',       # Strategy folder name under strategies/
+    start_date='2024-01-01',           # Backtest start date
+    end_date='2024-12-31',             # Backtest end date
+
+    # --- Capital & Market ---
+    # initial_capital=100000.0,        # Starting capital (must be > 0)
+    # market='CN',                     # Market: 'CN' (A-shares) | 'US'
+    # t_plus_1=None,                   # T+1 override: None=market default (CN=True, US=False)
+    # benchmark_code='',               # Benchmark code, empty=market default
+
+    # --- Frequency ---
+    # frequency='1d',                  # Bar frequency: '1d' (daily) | '1m' (minute)
+
+    # --- Paths ---
+    # data_path='~/.simtradelab/data', # Market data directory
+    # strategies_path='./strategies',  # Strategies root directory
+
+    # --- Performance ---
+    # enable_multiprocessing=True,     # Enable parallel data loading
+    # num_workers=None,                # Worker count (None=auto, must be >= 1)
+    # use_data_server=True,            # Use in-memory data server (singleton)
+
+    # --- Output ---
+    # enable_charts=True,              # Generate PNG chart
+    # enable_logging=True,             # Write log file
+    # enable_export=False,             # Export trade details to CSV
+
+    # --- Sandbox & i18n ---
+    # sandbox=True,                    # PTrade sandbox: restrict imports & builtins
+    # locale='auto',                   # Log language: 'zh' | 'en' | 'de' (auto: CN market→zh, else system locale)
 )
 runner = BacktestRunner()
 report = runner.run(config=config)

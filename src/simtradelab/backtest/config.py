@@ -18,6 +18,8 @@ from typing import Optional
 import pandas as pd
 from pydantic import BaseModel, Field, field_validator, model_validator
 
+from simtradelab.i18n import _DEFAULT_LOCALE
+
 
 def _default_data_path():
     """获取默认数据路径"""
@@ -67,8 +69,8 @@ class BacktestConfig(BaseModel):
     # 优化模式：跳过策略验证/数据分析/日志配置（由优化器管理）
     optimization_mode: bool = False
 
-    # 语言：zh=中文, en=英文
-    locale: str = Field(default="zh", description="语言")
+    # 语言：None=自动（CN市场→zh，其他→系统检测），可显式指定 zh/en/de
+    locale: Optional[str] = Field(default=None, description="语言")
 
     model_config = {"arbitrary_types_allowed": True}
 
@@ -88,6 +90,8 @@ class BacktestConfig(BaseModel):
         """
         if self.start_date >= self.end_date:  # type: ignore
             raise ValueError("start_date必须早于end_date")
+        if self.locale is None:
+            self.locale = "zh" if self.market == "CN" else _DEFAULT_LOCALE
         return self
 
     @property

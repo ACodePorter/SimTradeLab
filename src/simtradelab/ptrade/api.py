@@ -858,12 +858,20 @@ class PtradeAPI:
             elif len(fields) == 1:
                 field_name = fields[0]
                 df_data = {stock: result[stock][field_name] for stock in stocks_list if stock in result and field_name in result[stock]}
+                # Newly-listed stocks may have fewer bars than count;
+                # left-pad with NaN to align to trading calendar (PTrade convention)
+                if df_data and len(set(len(v) for v in df_data.values())) > 1:
+                    mx = max(len(v) for v in df_data.values())
+                    df_data = {k: np.concatenate([np.full(mx - len(v), np.nan), v.astype(float)]) if len(v) < mx else v for k, v in df_data.items()}
                 final_result = pd.DataFrame(df_data)
 
             else:
                 panel_data = {}
                 for field_name in fields:
                     df_data = {stock: result[stock][field_name] for stock in stocks_list if stock in result and field_name in result[stock]}
+                    if df_data and len(set(len(v) for v in df_data.values())) > 1:
+                        mx = max(len(v) for v in df_data.values())
+                        df_data = {k: np.concatenate([np.full(mx - len(v), np.nan), v.astype(float)]) if len(v) < mx else v for k, v in df_data.items()}
                     panel_data[field_name] = pd.DataFrame(df_data)
 
                 final_result = self.PanelLike(panel_data)

@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.0] - 2026-03-20
+
+### ✨ Added
+
+- **i18n** — Auto-detect log language: CN market defaults to Chinese, others follow system locale; explicit `locale` param overrides
+- **docs** — German README (`README.de.md`)
+- **docs** — All `BacktestConfig` parameters documented in README examples with comments
+
+### 🐛 Fixed
+
+- **api** — `get_history` multi-stock: left-pad newly-listed stocks with NaN to align to trading calendar (PTrade convention)
+
+### 📦 Upgrade
+
+```bash
+pip install --upgrade simtradelab==2.9.0
+```
+
+---
+
 ## [2.8.1] - 2026-03-18
 
 ### 🐛 Fixed

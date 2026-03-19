@@ -9,13 +9,35 @@ simtradelab i18n — 线程安全的翻译模块
 """
 
 import json
+import locale
+import os
 import sys
 import threading
 from pathlib import Path
 
 _locales: dict[str, dict[str, str]] = {}
 _thread_local = threading.local()
-_DEFAULT_LOCALE = "zh"
+_SUPPORTED_LOCALES = {"zh", "en", "de"}
+
+
+def _detect_locale() -> str:
+    for env in ("LC_ALL", "LC_MESSAGES", "LANG"):
+        val = os.environ.get(env, "")
+        if val:
+            lang = val.split("_")[0].split(".")[0]
+            if lang in _SUPPORTED_LOCALES:
+                return lang
+            break
+    try:
+        lang = (locale.getlocale()[0] or "").split("_")[0]
+        if lang in _SUPPORTED_LOCALES:
+            return lang
+    except Exception:
+        pass
+    return "en"
+
+
+_DEFAULT_LOCALE = _detect_locale()
 
 
 def _load_locales() -> None:
