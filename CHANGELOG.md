@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.10.1] - 2026-03-26
+
+### 🐛 Fixed
+
+- **api** — `get_index_stocks` now converts PTrade code format (`.XSHG`/`.XSHE`/`.XBHS`) to data format (`.SS`/`.SZ`) automatically
+- **api** — `get_index_stocks` raises `ValueError` with clear i18n message when index data is missing, instead of silently returning `[]`
+- **api** — `set_benchmark` supports PTrade code format (e.g. `000300.XSHG` → `000300.SS`)
+- **api** — `get_fundamentals` returns `DataFrame(columns=fields)` instead of empty `DataFrame()` when no data matches, preventing `KeyError` on `sort_values`
+
+### 🔧 Changed
+
+- **project** — Add ruff formatter/linter config (`pyproject.toml`) for code style consistency with SimTradeAPI
+
+### 📦 Upgrade
+
+```bash
+pip install --upgrade simtradelab==2.10.1
+```
+
+---
+
 ## [2.10.0] - 2026-03-23
 
 ### ✨ Added

@@ -84,6 +84,8 @@
   "api.benchmark_index": "Benchmark gesetzt (Index): {benchmark}",
   "api.benchmark_stock": "Benchmark gesetzt (Aktie/Index): {benchmark}",
   "api.benchmark_not_found": "Benchmark {benchmark} nicht in Index- oder Aktiendaten gefunden, aktueller Benchmark beibehalten",
+  "api.index_no_data": "Indexbestandteildaten nicht geladen, Abfrage von {index} nicht möglich",
+  "api.index_not_found": "Index {index} nicht in Bestandteildaten gefunden, bitte Indexcode oder Datenabdeckung prüfen",
   "api.pos_not_list": "set_yesterday_position Parameter muss eine Liste sein",
   "api.set_position": "Ausgangsposition gesetzt: {stock}, Menge: {amount}, Kosten: {cost}",
   "api.prebuilding": "Datumsindex für {count} Aktien wird erstellt...",

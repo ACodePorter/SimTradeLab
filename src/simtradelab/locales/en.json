@@ -84,6 +84,8 @@
   "api.benchmark_index": "Set benchmark (index): {benchmark}",
   "api.benchmark_stock": "Set benchmark (stock/index): {benchmark}",
   "api.benchmark_not_found": "Benchmark {benchmark} not found in index or stock data, keeping current benchmark",
+  "api.index_no_data": "Index constituents data not loaded, cannot query {index}",
+  "api.index_not_found": "Index {index} not found in constituents data, check index code or data coverage",
   "api.pos_not_list": "set_yesterday_position parameter must be a list",
   "api.set_position": "Set initial position: {stock}, amount: {amount}, cost: {cost}",
   "api.prebuilding": "Pre-building date index for {count} stocks...",

@@ -84,6 +84,8 @@
   "api.benchmark_index": "设置基准（指数）: {benchmark}",
   "api.benchmark_stock": "设置基准（股票/指数）: {benchmark}",
   "api.benchmark_not_found": "基准 {benchmark} 不存在于指数或股票数据中，保持当前基准",
+  "api.index_no_data": "指数成分股数据未加载，无法查询 {index}",
+  "api.index_not_found": "指数 {index} 不存在于成分股数据中，请检查指数代码或数据是否包含该指数",
   "api.pos_not_list": "set_yesterday_position 参数必须是列表",
   "api.set_position": "设置底仓: {stock}, 数量:{amount}, 成本价:{cost}",
   "api.prebuilding": "预构建 {count} 只股票的日期索引...",
